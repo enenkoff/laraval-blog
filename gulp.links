@@ -1,0 +1,33 @@
+** Разбиваем gulpfile на несколько файлов **
+
+https://getinstance.info/articles/tools/splitting-gulpfile-multiple-files/
+
+----------------------------------------------------------------------------------------------------
+
+** Пример сборки **
+
+https://habr.com/ru/post/251807/
+
+----------------------------------------------------------------------------------------------------
+
+** разные сборки для development и production **
+
+https://simplamarket.com/blog/ispolzovanie-gulp-chast-3---raznye-sborki-dlya-development-i-production
+
+----------------------------------------------------------------------------------------------------
+
+** Как перейти на Gulp.js 4.0 **
+
+https://webformyself.com/kak-perejti-na-gulp-js-4-0/
+
+----------------------------------------------------------------------------------------------------
+
+** Сборщик проектов Gulp 4 **
+
+http://tpverstak.ru/gulp/
+
+----------------------------------------------------------------------------------------------------
+
+https://github.com/andreyalexeich/gulp-pug-starter/blob/master/gulpfile.babel.js
+
+https://github.com/vigetlabs/blendid/blob/master/gulpfile.js/index.js
