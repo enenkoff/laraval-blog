@@ -4,15 +4,56 @@ module.exports = function (gulp, plugins) {
         return require('./tasks/' + task)(gulp, plugins, path_src, path_dest);
     };
 
-    gulp.task('css', done => {
+    /* css:compile ------------------------------------- */
+
+    gulp.task('css:build', done => {
         getTask('css', PATH_CONFIG.src.sass, PATH_CONFIG.build.css);
         done();
     });
 
-    gulp.task('watch_css', gulp.series('css', function() {
+    /*---------------------------------------------------*/
+
+    /* svg:compile --------------------------------------*/
+
+    // svg sprite build
+
+    gulp.task('svg:sprite', done => {
+        getTask('svg-sprite', PATH_CONFIG.src.svg_sprite, PATH_CONFIG.src.svg);
+        done();
+    });
+
+    // svg copy all files to build
+
+    gulp.task('svg:copy', done => {
+        getTask('svg-copy', PATH_CONFIG.src.svg_files, PATH_CONFIG.build.svg);
+        done();
+    });
+
+    // svg inject to html template
+
+    gulp.task('svg:inject', done => {
+        getTask('svg-inject', PATH_CONFIG.src.svg, PATH_CONFIG.src.html_templates);
+        done();
+    });
+
+    // svg build sprite and copy all files to build
+
+    gulp.task('svg:build', gulp.series('svg:sprite', 'svg:copy', 'svg:inject', (done) => {
+        done();
+    }));
+
+
+
+    /*---------------------------------------------------*/
+
+
+
+    /* watchers */
+
+    gulp.task('watch:css', gulp.series('css:build', function() {
         gulp.watch(
             PATH_CONFIG.watch.style,
-            gulp.series('css')
+            gulp.series('css:build')
         );
     }));
 

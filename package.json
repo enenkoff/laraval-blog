@@ -9,13 +9,24 @@
   "author": "enenkoff",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^9.5.1",
     "browser-sync": "^2.26.3",
+    "css-mqpacker": "^7.0.0",
     "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-inject-svg": "^0.1.18",
     "gulp-load-plugins": "^1.5.0",
+    "gulp-newer": "^1.4.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-svgstore": "^7.0.1",
     "gulp-watch": "^5.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "stylefmt": "^6.0.3"
+  }
 }

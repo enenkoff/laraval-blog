@@ -11,6 +11,8 @@ module.exports = {
     src: {
         common: 'resources/',                              /* path to source folder */
         svg: 'resources/svg/',                             /* path to source svg folder */
+        svg_sprite: 'resources/svg/sprite/*.svg',          /* path to source svg sprite files */
+        svg_files: 'resources/svg/**/*.svg',               /* path to source all svg files */
         media: 'resources/media/**/*.*',                   /* path to source media files */
         fonts: 'resources/fonts/**/*.*',                   /* path to source fonts folder */
         js: 'resources/js/',                               /* path to source js folder */
@@ -22,7 +24,8 @@ module.exports = {
     watch: {
         html: 'resources/_code/**/*.html',                 /* path for watch html files */
         js: 'resources/js/**/*.js',                        /* path for watch js files */
-        style: 'resources/sass/**/*.scss'                  /* path for watch sass files */
+        style: 'resources/sass/**/*.scss',                 /* path for watch sass files */
+        svg: 'resources/svg/**/*.svg'                      /* path for watch svg files */
     },
     clean: 'public/html/'                                  /* path for browsersync directory */
 };
