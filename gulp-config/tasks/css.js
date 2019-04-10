@@ -12,22 +12,23 @@ module.exports = function (gulp, plugins, path_src, path_dest) {
         // this.emit('end');
     };
 
-    gulp.src(path_src)
-        .pipe(plugins.plumber({ errorHandler: onError }))
-        .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.sass())
-        .pipe(
-            plugins.postcss([
-                autoprefixer({
-                    browsers:['last 10 versions']
-                }),
-                mqpacker(),
-                stylefmt(STYLEFMT)
-            ])
-        )
-        .pipe(plugins.cleanCss())
-        .pipe(plugins.sourcemaps.write())
-        .pipe(plugins.rename({suffix: '.min'}))
-        .pipe(gulp.dest(path_dest))
-        .pipe(plugins.notify( 'Готово!' ) );
+    return gulp.src(path_src)
+            .pipe(plugins.plumber({ errorHandler: onError }))
+            .pipe(plugins.sourcemaps.init())
+            .pipe(plugins.sass())
+            .pipe(
+                plugins.postcss([
+                    autoprefixer({
+                        browsers:['last 10 versions']
+                    }),
+                    mqpacker(),
+                    stylefmt(STYLEFMT)
+                ])
+            )
+            .pipe(plugins.cleanCss())
+            .pipe(plugins.sourcemaps.write())
+            .pipe(plugins.rename({suffix: '.min'}))
+            .pipe(gulp.dest(path_dest))
+            .pipe(plugins.notify( 'Готово!' ) )
+;
 };
