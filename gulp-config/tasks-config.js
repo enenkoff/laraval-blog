@@ -8,8 +8,17 @@ module.exports = function (gulp, plugins) {
 /* css:compile ------------------------------------- */
 
     gulp.task('css:build', () => {
-        return getTask('css', PATH_CONFIG.src.sass, PATH_CONFIG.build.css);
+        return getTask('css-build', PATH_CONFIG.src.sass, PATH_CONFIG.build.css);
     });
+
+
+
+
+/* html:compile ------------------------------------- */
+
+    gulp.task('html:build', gulp.series('svg:inject', () => {
+        return getTask('html-build', PATH_CONFIG.src.html_pages, PATH_CONFIG.build.html);
+    }));
 
 
 
@@ -25,7 +34,7 @@ module.exports = function (gulp, plugins) {
     // svg copy all files to build
 
     gulp.task('svg:copy', () => {
-        return getTask('svg-copy', PATH_CONFIG.src.svg_files, PATH_CONFIG.build.svg);
+        return getTask('copy', PATH_CONFIG.src.svg_files, PATH_CONFIG.build.svg);
     });
 
     // svg inject to html template
@@ -52,7 +61,25 @@ module.exports = function (gulp, plugins) {
 
 
 
-    /* watchers */
+/* media:copy --------------------------------------*/
+
+    gulp.task('media:copy', () => {
+        return getTask('copy', PATH_CONFIG.src.media, PATH_CONFIG.build.media);
+    });
+
+
+
+
+/* fonts:copy --------------------------------------*/
+
+    gulp.task('fonts:copy', () => {
+        return getTask('copy', PATH_CONFIG.src.fonts, PATH_CONFIG.build.fonts);
+    });
+
+
+
+
+/* watchers --------------------------------------*/
 
     gulp.task('watch:css', gulp.series('css:build', function() {
         gulp.watch(
