@@ -5,17 +5,16 @@ module.exports = function (gulp, plugins) {
     };
 
 
-    /* css:compile ------------------------------------- */
+/* css:compile ------------------------------------- */
 
     gulp.task('css:build', () => {
         return getTask('css', PATH_CONFIG.src.sass, PATH_CONFIG.build.css);
     });
 
-    /*---------------------------------------------------*/
 
 
 
-    /* svg:compile --------------------------------------*/
+/* svg:compile --------------------------------------*/
 
     // svg sprite build
 
@@ -41,7 +40,15 @@ module.exports = function (gulp, plugins) {
         done();
     }));
 
-    /*---------------------------------------------------*/
+
+
+
+/* img:compile --------------------------------------*/
+
+    gulp.task('img:optimize', () => {
+        return getTask('img-optimize', PATH_CONFIG.src.img, PATH_CONFIG.build.img)
+    });
+
 
 
 
