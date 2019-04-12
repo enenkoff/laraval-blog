@@ -5,22 +5,6 @@ module.exports = function (gulp, plugins) {
     };
 
 
-/* css:compile ------------------------------------- */
-
-    gulp.task('css:build', () => {
-        return getTask('css-build', PATH_CONFIG.src.sass, PATH_CONFIG.build.css);
-    });
-
-
-
-
-/* html:compile ------------------------------------- */
-
-    gulp.task('html:build', gulp.series('svg:inject', () => {
-        return getTask('html-build', PATH_CONFIG.src.html_pages, PATH_CONFIG.build.html);
-    }));
-
-
 
 
 /* svg:compile --------------------------------------*/
@@ -45,7 +29,7 @@ module.exports = function (gulp, plugins) {
 
     // svg build sprite and copy all files to build
 
-    gulp.task('svg:build', gulp.series('svg:sprite', 'svg:inject', 'svg:copy', (done) => {
+    gulp.task('svg:build', gulp.series('svg:inject', 'svg:copy', (done) => {
         done();
     }));
 
@@ -75,6 +59,24 @@ module.exports = function (gulp, plugins) {
     gulp.task('fonts:copy', () => {
         return getTask('copy', PATH_CONFIG.src.fonts, PATH_CONFIG.build.fonts);
     });
+
+
+
+
+/* css:compile ------------------------------------- */
+
+    gulp.task('css:build', () => {
+        return getTask('css-build', PATH_CONFIG.src.sass, PATH_CONFIG.build.css);
+    });
+
+
+
+
+/* html:compile ------------------------------------- */
+
+    gulp.task('html:build', gulp.series('svg:inject', () => {
+        return getTask('html-build', PATH_CONFIG.src.html_pages, PATH_CONFIG.build.html);
+    }));
 
 
 
