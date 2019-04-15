@@ -6,6 +6,17 @@ module.exports = function (gulp, plugins) {
 
 
 
+/* browser sync ------------------------------------- */
+
+    gulp.task('browser:sync', () => {
+        return getTask('browser-sync', PATH_CONFIG.clean, PATH_CONFIG.port);
+    });
+
+    gulp.task('browser:reload', () => {
+        return browserSync.reload();
+    });
+
+
 
 /* svg:compile --------------------------------------*/
 
@@ -35,13 +46,11 @@ module.exports = function (gulp, plugins) {
 
 
 
-
 /* img:compile --------------------------------------*/
 
     gulp.task('img:optimize', () => {
         return getTask('img-optimize', PATH_CONFIG.src.img, PATH_CONFIG.build.img)
     });
-
 
 
 
@@ -53,13 +62,11 @@ module.exports = function (gulp, plugins) {
 
 
 
-
 /* fonts:copy --------------------------------------*/
 
     gulp.task('fonts:copy', () => {
         return getTask('copy', PATH_CONFIG.src.fonts, PATH_CONFIG.build.fonts);
     });
-
 
 
 
@@ -71,13 +78,19 @@ module.exports = function (gulp, plugins) {
 
 
 
-
 /* html:compile ------------------------------------- */
 
     gulp.task('html:build', gulp.series('svg:inject', () => {
         return getTask('html-build', PATH_CONFIG.src.html_pages, PATH_CONFIG.build.html);
     }));
 
+
+
+/* js:compile ------------------------------------- */
+
+    gulp.task('js:build', () => {
+        return getTask('js-build', PATH_CONFIG.src.js, PATH_CONFIG.build.js);
+    });
 
 
 
@@ -87,6 +100,13 @@ module.exports = function (gulp, plugins) {
         gulp.watch(
             PATH_CONFIG.watch.style,
             gulp.series('css:build')
+        );
+    }));
+
+    gulp.task('watch:html', gulp.series('html:build', 'browser:sync', () => {
+        gulp.watch(
+            [PATH_CONFIG.watch.html,PATH_CONFIG.watch.html_no_svg],
+            gulp.series('html:build','browser:reload')
         );
     }));
 

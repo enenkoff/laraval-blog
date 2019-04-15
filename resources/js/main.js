@@ -7,9 +7,6 @@
 // svg-use
 //= vendor/svgxuse.min.js
 
-// touch-or-mouse
-//= vendor/touchOrMouse.min.js
-
 // functions
 //= partials/functions.js
 
