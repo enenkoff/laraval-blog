@@ -10,4 +10,5 @@ module.exports = function (gulp, plugins, path_src, path_dest) {
             .pipe(gulp.dest(path_dest))
             .pipe(plugins.webp())
             .pipe(gulp.dest(path_dest))
+            .pipe(browserSync.reload({ stream: true }));
 };

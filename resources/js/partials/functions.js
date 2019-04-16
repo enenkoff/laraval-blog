@@ -13,16 +13,8 @@ var project = {},
 
 project.headerFixed = function(){
 
-    if(scrollTop > scrollVar){
-        $header.addClass('minimized');
-        scrollVar = scrollTop;
-    }
-    else {
-        $header.removeClass('minimized');
-        scrollVar = scrollTop;
-    }
-};
 
+};
 
 /* ----------------------------------- plugins ----------------------------------- */
 

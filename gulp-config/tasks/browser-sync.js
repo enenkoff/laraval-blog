@@ -1,6 +1,6 @@
 module.exports = function (gulp, plugins, path_src, path_dest) {
 
-    return browserSync({
+    return browserSync.init({
         server: path_src,
         host: 'localhost',
         browser: 'chrome',

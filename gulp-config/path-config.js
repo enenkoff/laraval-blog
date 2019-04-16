@@ -1,6 +1,6 @@
 module.exports = {
     build: {
-        html: 'public/html/',                              /* path to ready htmls */
+        html: 'public/',                              /* path to ready htmls */
         js: 'public/js/',                                  /* path to ready js */
         css: 'public/css/',                                /* path to ready css */
         img: 'public/images/',                             /* path to ready images */
@@ -26,8 +26,9 @@ module.exports = {
         html_no_svg: '!resources/_code/**/sprite-svg.html',   /* path for exclude sprite-svg template */
         js: 'resources/js/**/*.js',                           /* path for watch js files */
         style: 'resources/sass/**/*.scss',                    /* path for watch sass files */
-        svg: 'resources/svg/**/*.svg'                         /* path for watch svg files */
+        svg: 'resources/svg/**/*.svg',                        /* path for watch svg files */
+        img: 'resources/images/**/*.+(jpg|jpeg|png|gif)'      /* path for watch image files */
     },
-    clean: 'public/html/',                                    /* path for browsersync directory */
+    clean: 'public/',                                    /* path for browsersync directory */
     port: '6060'
 };

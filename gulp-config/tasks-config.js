@@ -12,10 +12,6 @@ module.exports = function (gulp, plugins) {
         return getTask('browser-sync', PATH_CONFIG.clean, PATH_CONFIG.port);
     });
 
-    gulp.task('browser:reload', () => {
-        return browserSync.reload();
-    });
-
 
 
 /* svg:compile --------------------------------------*/
@@ -96,18 +92,27 @@ module.exports = function (gulp, plugins) {
 
 /* watchers --------------------------------------*/
 
-    gulp.task('watch:css', gulp.series('css:build', function() {
-        gulp.watch(
-            PATH_CONFIG.watch.style,
-            gulp.series('css:build')
-        );
+    gulp.task('watch:css', gulp.parallel('css:build', 'browser:sync', () => {
+        return getTask('watch', PATH_CONFIG.watch.style, 'css:build');
     }));
 
-    gulp.task('watch:html', gulp.series('html:build', 'browser:sync', () => {
-        gulp.watch(
-            [PATH_CONFIG.watch.html,PATH_CONFIG.watch.html_no_svg],
-            gulp.series('html:build','browser:reload')
-        );
+    gulp.task('watch:html', gulp.parallel('html:build', 'browser:sync', () => {
+        return getTask('watch', [PATH_CONFIG.watch.html,PATH_CONFIG.watch.html_no_svg], 'html:build');
     }));
+
+    gulp.task('watch:js', gulp.parallel('js:build', 'browser:sync', () => {
+        return getTask('watch', PATH_CONFIG.watch.js, 'js:build');
+    }));
+
+    gulp.task('watch:img', gulp.parallel('img:optimize', 'browser:sync', () => {
+        return getTask('watch', PATH_CONFIG.watch.img, 'img:optimize');
+    }));
+
+    gulp.task('watch', gulp.parallel('css:build', 'html:build', 'js:build', 'img:optimize', 'browser:sync', () => {
+        getTask('watch', PATH_CONFIG.watch.style, 'css:build');
+        getTask('watch', [PATH_CONFIG.watch.html,PATH_CONFIG.watch.html_no_svg], 'html:build');
+        getTask('watch', PATH_CONFIG.watch.js, 'js:build');
+        getTask('watch', PATH_CONFIG.watch.img, 'img:optimize');
+    }))
 
 };
